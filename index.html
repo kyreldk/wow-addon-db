@@ -42,7 +42,12 @@
 <script type="text/javascript"> 
     $(document).ready(function() {
         $('#addon-table').DataTable( {
-        ajax: 'addons.json'
+        ajax: 'addons.json',
+            columns: [
+        { data: 'AddonName' },
+        { data: 'SourceUrl' },
+        { data: 'HasGithubReleases' }
+    ]
     } );
     })
 </script>
