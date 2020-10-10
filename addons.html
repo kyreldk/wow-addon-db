@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>WoW Addon Situation</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    </header>
+    <h1>WoW Addon Sources other than CurseForge</h1>
+    <div>
+        This list contains addon sources that are not curseforge. <br>
+        <hr>
+        <strong>If you want to help:</strong>
+        <ul>
+            <li>Make a pull request, adding addons or sources</li>
+            <li>Encourage the developers of your favourite addons to use git / github</li>
+            <li>If they are already using github, encourage them to follow a clearly visible release strategy to facilitate the creation of a git based WoW addon manager</li>
+        </ul>
+    </div>
+    <hr>
+    <hr>
+    <body>
+        <table id="addon-table">
+            <thead>
+                <tr>
+                    <th>AddonName</th>
+                    <th>SourceUrl</th>
+                    <th>HasGithubReleases</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Loading</td>
+                    <td>Loading</td>
+                    <td>Loading</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
+
+<script type="text/javascript"> 
+    $(document).ready(function() {
+        $('#addon-table').DataTable( {
+        ajax: 'addons.json'
+    } );
+    })
+</script>
