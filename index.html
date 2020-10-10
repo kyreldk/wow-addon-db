@@ -3,8 +3,7 @@
     <header>
         <title>WoW Addon Situation</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+        <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
     </header>
     <h1>WoW Addon Sources other than CurseForge</h1>
     <div>
@@ -20,34 +19,31 @@
     <hr>
     <hr>
     <body>
-        <table id="addon-table">
-            <thead>
-                <tr>
-                    <th>AddonName</th>
-                    <th>SourceUrl</th>
-                    <th>HasGithubReleases</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Loading</td>
-                    <td>Loading</td>
-                    <td>Loading</td>
-                </tr>
-            </tbody>
-        </table>
+        <div id="wow-addons" page-size=20>
     </body>
 </html>
 
 <script type="text/javascript"> 
     $(document).ready(function() {
-        $('#addon-table').DataTable( {
-        ajax: 'addons.json',
-            columns: [
-        { data: 'AddonName' },
-        { data: 'SourceUrl' },
-        { data: 'HasGithubReleases' }
-    ]
-    } );
-    })
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+        
+            if (this.readyState == 4 && this.status == 200) {
+                const gridConfig = {
+                    caption: 'Hello-world',
+                    data: this.responseText,
+                    pageSize: 15,
+                    pager: true,
+                    search: true,
+                    pagerPosition: "top",
+                    filter: true
+                };
+                let zingGridRef = new ZingGrid('wow-addons', gridConfig);
+            }
+        };
+
+        xhttp.open("GET", "https://kyreldk.github.io/wow-addon-db/addons.json", true);
+        xhttp.send();
+    });
 </script>
